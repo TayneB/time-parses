@@ -1,3 +1,5 @@
+** Re-building the parse by time project using a template I am familiar with so I can build the app itself instead of building my own template and navigating all the configs and package choice
+
 # Fullstack Collection App
 
 This repo is designed to provide space to code a fullstack app. It contains node modules and folders for databases, routes, API requests and React components that'll use React Query. Let's get going!
