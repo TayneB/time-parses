@@ -1,9 +1,8 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import { getToken, updateToken } from '../db/functions/token'
-import server from '../server'
 
-dotenv.config({ path: '../../.env' })
+dotenv.config()
 const router = express.Router()
 
 const clientId = process.env.CLIENT_ID
@@ -63,7 +62,6 @@ router.get('/', async (req, res) => {
       },
       body: JSON.stringify({ Query }),
     })
-    console.log(process.env.CLIENT_ID)
     res.json(await response.json())
   } catch (error) {
     console.log(error)
