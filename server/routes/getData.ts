@@ -1,6 +1,6 @@
 import express from 'express'
 import dotenv from 'dotenv'
-import { getToken } from '../db/functions/token'
+import { getToken, updateToken } from '../db/functions/token'
 
 dotenv.config({ path: '../../../.env' })
 const router = express.Router()
