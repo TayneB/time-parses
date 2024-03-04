@@ -3,20 +3,20 @@ This repo is a side project aimed at helping players of the Online MMORPG World 
 
 ## Start Up
 After cloning and installing, `npm run dev` to start the server
-<summary>Tip</summary>
-
-    You may also want to start a new branch
-    ```sh
-    cd my-fullstack-collection
+<summary>Note</summary>
+    cd time-parses
     npm i
-    git checkout -b <branchname>
     npm run dev
-    ```
   </details>
-Create a .env using the [.env.sample](https://github.com/TayneB/time-parses/blob/main/.env.sample) as guidance
+Create a .env in accordance with the [.env.sample](https://github.com/TayneB/time-parses/blob/main/.env.sample)
+Make sure to seed and migrate knex.
+
+---------------------------------------------------------
 
 ## Current functionality 
-Once running going the api endpoint at `http://localhost:3000/api/v1/getData` will return a json object with details pertaining to a wow character Marbin. This is currently Hardcoded. The server uses oauth2 to make calls to the warcraftlogs v2 api to retrieve character data and makes calls to the token uri to authenticate itself based on a client id and secret (held in the .env).
+Once running going the api endpoint at `http://localhost:3000/api/v1/getData` will return a json object with details pertaining to a wow character Marbin. This is currently Hardcoded. The server uses oauth2 to make calls to the warcraftlogs v2 api to retrieve character data and makes calls to the token uri to authenticate itself based on a client id and secret (held in the .env). The db is used to house a token which will automatically refresh itself when it expires or it doesnt exist.
+
+Text below this line is vestigial from the template used -------------------------------------------------------------------
 
 # Fullstack Collection App - Keeping Description for referencing
 
