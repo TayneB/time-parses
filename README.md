@@ -1,6 +1,24 @@
-** Re-building the parse by time project using a template I am familiar with so I can build the app itself instead of building my own template and navigating all the configs and package choice
+# Time-parses
+This repo is a side project aimed at helping players of the Online MMORPG World of Warcraft gain insight into their performance and areas they can improve on based on the kill time of the games raid boss fights, character class, talents, and ingame ability rotation with an emphasis on contextualising the players performance specifically with kill times of other top performing players.
 
-# Fullstack Collection App
+## Start Up
+After cloning and installing, `npm run dev` to start the server
+<summary>Tip</summary>
+
+    You may also want to start a new branch
+    ```sh
+    cd my-fullstack-collection
+    npm i
+    git checkout -b <branchname>
+    npm run dev
+    ```
+  </details>
+Create a .env using the [.env.sample](https://github.com/TayneB/time-parses/blob/main/.env.sample) as guidance
+
+## Current functionality 
+Once running going the api endpoint at `http://localhost:3000/api/v1/getData` will return a json object with details pertaining to a wow character Marbin. This is currently Hardcoded. The server uses oauth2 to make calls to the warcraftlogs v2 api to retrieve character data and makes calls to the token uri to authenticate itself based on a client id and secret (held in the .env).
+
+# Fullstack Collection App - Keeping Description for referencing
 
 This repo is designed to provide space to code a fullstack app. It contains node modules and folders for databases, routes, API requests and React components that'll use React Query. Let's get going!
 
