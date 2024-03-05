@@ -1,10 +1,26 @@
+import { useParses } from '../hooks/useParses'
+
 function App() {
+  const { data, isLoading, isError } = useParses()
+
+  if (isError) {
+    return <p>Something went wrong...</p>
+  }
+
+  if (!data || isLoading) {
+    return <p>Loading...</p>
+  }
+
+  console.log(data)
+
   return (
     <>
       <header className="header">
-        <h1>My Collection</h1>
+        <h1>{data.name}</h1>
       </header>
-      <section className="main">{/* add your code here */}</section>
+      <section className="main">
+        Level: {data.level} - Id: {data.id}
+      </section>
     </>
   )
 }
