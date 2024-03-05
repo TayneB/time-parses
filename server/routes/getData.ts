@@ -19,7 +19,8 @@ router.get('/', async (req, res) => {
   try {
     const { access_token, expiration } = await getToken()
     // const { name, serverSlug, serverRegion } = req.query
-    const { name, serverSlug, serverRegion } = req.body
+    const { name, serverSlug, serverRegion } = await req.body
+    console.log(req.body)
 
     let token = ''
 
