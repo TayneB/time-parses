@@ -7,9 +7,12 @@ export async function getCharacterData(): Promise<Character> {
   // name: string,
   // serverSlug: string,
   // serverRegion: string
+  // name: string,
+  // serverSlug: string,
+  // serverRegion: string
   const { character } = await request
     .get(rootUrl)
-    .send({ name: 'Marbin', serverSlug: 'frostmourne', serverRegion: 'us' })
+    //.send({ name: name, serverSlug: serverSlug, serverRegion: serverRegion })
     .then((res) => res.body.data.characterData)
   return character
 }

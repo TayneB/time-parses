@@ -1,6 +1,9 @@
 import { useParses } from '../hooks/useParses'
 
 function App() {
+  // const name = 'Marbin'
+  // const serverSlug = 'frostmourne'
+  // const serverRegion = 'us'
   const { data, isLoading, isError } = useParses()
 
   if (isError) {
