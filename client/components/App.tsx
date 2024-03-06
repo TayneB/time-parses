@@ -1,7 +1,12 @@
 import { useParses } from '../hooks/useParses'
 
 function App() {
-  const { data, isLoading, isError } = useParses()
+  const character = {
+    name: 'Marbin',
+    serverSlug: 'frostmourne',
+    serverRegion: 'us',
+  }
+  const { data, isLoading, isError } = useParses(character)
 
   if (isError) {
     return <p>Something went wrong...</p>
@@ -11,15 +16,15 @@ function App() {
     return <p>Loading...</p>
   }
 
-  console.log(data)
+  console.log(data.character)
 
   return (
     <>
       <header className="header">
-        <h1>{data.name}</h1>
+        <h1>{data.character.name}</h1>
       </header>
       <section className="main">
-        Level: {data.level} - Id: {data.id}
+        Level: {data.character.level} - Id: {data.character.id}
       </section>
     </>
   )
