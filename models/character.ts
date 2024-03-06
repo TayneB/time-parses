@@ -7,15 +7,12 @@ export interface Data {
 }
 
 export interface CharacterData {
-  character: Character
+  character: {
+    id: number
+    name: string
+    level: number
+  }
 }
-
-export interface Character {
-  id: number
-  name: string
-  level: number
-}
-
 export interface CharacterSearchDetails {
   name: string
   serverSlug: string
