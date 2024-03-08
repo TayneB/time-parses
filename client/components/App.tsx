@@ -2,7 +2,7 @@ import { useParses } from '../hooks/useParses'
 
 function App() {
   const character = {
-    name: 'Marbin',
+    name: 'Marbuldan',
     serverSlug: 'frostmourne',
     serverRegion: 'us',
   }
