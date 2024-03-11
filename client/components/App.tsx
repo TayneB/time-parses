@@ -5,6 +5,7 @@ function App() {
   const [name, setName] = useState('Marbuldan')
   const [serverSlug, setServerSlug] = useState('frostmourne')
   const [serverRegion, setServerRegion] = useState('us')
+
   const [character, setCharacter] = useState({
     name: name,
     serverSlug: serverSlug,
