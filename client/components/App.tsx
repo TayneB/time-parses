@@ -16,8 +16,8 @@ function App() {
 
     setCharacter({
       name: name,
-      serverSlug: 'frostmourne',
-      serverRegion: 'us',
+      serverSlug: serverSlug,
+      serverRegion: serverRegion,
     })
   }
 
