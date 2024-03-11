@@ -1,11 +1,21 @@
+import React, { useState } from 'react'
 import { useParses } from '../hooks/useParses'
 
 function App() {
-  const character = {
+  const [character, setCharacter] = useState({
     name: 'Marbuldan',
     serverSlug: 'frostmourne',
     serverRegion: 'us',
+  })
+
+  const onClick = () => {
+    setCharacter({
+      name: 'Marbgood',
+      serverSlug: 'frostmourne',
+      serverRegion: 'us',
+    })
   }
+
   const { data, isLoading, isError } = useParses(character)
 
   if (isError) {
@@ -26,6 +36,7 @@ function App() {
       <section className="main">
         Level: {data.character.level} - Id: {data.character.id}
       </section>
+      <button onClick={onClick}>Log Data</button>
     </>
   )
 }
