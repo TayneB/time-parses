@@ -1,16 +1,21 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useParses } from '../hooks/useParses'
 
 function App() {
+  const [name, setName] = useState('Marbuldan')
+  const [serverSlug, setServerSlug] = useState('frostmourne')
+  const [serverRegion, setServerRegion] = useState('us')
   const [character, setCharacter] = useState({
-    name: 'Marbuldan',
-    serverSlug: 'frostmourne',
-    serverRegion: 'us',
+    name: name,
+    serverSlug: serverSlug,
+    serverRegion: serverRegion,
   })
 
-  const onClick = () => {
+  function onClick(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+
     setCharacter({
-      name: 'Marbgood',
+      name: name,
       serverSlug: 'frostmourne',
       serverRegion: 'us',
     })
@@ -26,7 +31,7 @@ function App() {
     return <p>Loading...</p>
   }
 
-  console.log(data.character)
+  // console.log(data.character)
 
   return (
     <>
@@ -36,7 +41,30 @@ function App() {
       <section className="main">
         Level: {data.character.level} - Id: {data.character.id}
       </section>
-      <button onClick={onClick}>Log Data</button>
+      <form onSubmit={onClick}>
+        <label htmlFor="name">Character: </label>
+        <input
+          id="name"
+          type="text"
+          name="name"
+          onChange={(e) => setName(e.target.value)}
+        />
+        <label htmlFor="serverSlug">Server: </label>
+        <input
+          id="serverSlug"
+          type="text"
+          name="serverSlug"
+          onChange={(e) => setServerSlug(e.target.value)}
+        />
+        <label htmlFor="serverRegion">Region: </label>
+        <input
+          id="serverRegion"
+          type="text"
+          name="serverRegion"
+          onChange={(e) => setServerRegion(e.target.value)}
+        />
+        <button type="submit">Search</button>
+      </form>
     </>
   )
 }
