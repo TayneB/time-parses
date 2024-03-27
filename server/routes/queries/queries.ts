@@ -41,6 +41,14 @@ const queryParsesBySpecAndDuration = `query {
 	}
 }`
 
+const queryCharacterParses = `query {
+	characterData {
+		character(name: "Marbin", serverSlug: "frostmourne", serverRegion: "us") {
+			encounterRankings(encounterID: 2709)
+		}
+	}
+}`
+
 const queryRegionAndServer = `query {
 	worldData {
 		regions {name slug servers(limit: 100 page: 1){
@@ -55,4 +63,5 @@ export {
   queryClassesAndSpecs,
   queryParsesBySpecAndDuration,
   queryRegionAndServer,
+  queryCharacterParses,
 }
