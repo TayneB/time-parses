@@ -41,9 +41,18 @@ const queryParsesBySpecAndDuration = `query {
 	}
 }`
 
+const queryRegionAndServer = `query {
+	worldData {
+		regions {name slug servers(limit: 100 page: 1){
+			data {name slug}
+		}}
+	}
+}`
+
 export {
   queryExpansionIDs,
   queryEncounterIDs,
   queryClassesAndSpecs,
   queryParsesBySpecAndDuration,
+  queryRegionAndServer,
 }
