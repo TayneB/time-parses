@@ -20,4 +20,17 @@ const queryEncounterIDs = `query {
 	}
 }`
 
-export { queryExpansionIDs, queryEncounterIDs }
+const queryClassesAndSpecs = `query {
+	gameData {
+		classes {
+			name
+			slug
+			specs {
+				name
+				slug
+			}
+		}
+	}
+}`
+
+export { queryExpansionIDs, queryEncounterIDs, queryClassesAndSpecs }
