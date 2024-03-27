@@ -33,4 +33,17 @@ const queryClassesAndSpecs = `query {
 	}
 }`
 
-export { queryExpansionIDs, queryEncounterIDs, queryClassesAndSpecs }
+const queryParsesBySpecAndDuration = `query {
+	worldData {
+		encounter (id: 2709 ){
+			characterRankings (className: "DeathKnight" specName: "Unholy" filter: "duration.200.300")
+		}
+	}
+}`
+
+export {
+  queryExpansionIDs,
+  queryEncounterIDs,
+  queryClassesAndSpecs,
+  queryParsesBySpecAndDuration,
+}
