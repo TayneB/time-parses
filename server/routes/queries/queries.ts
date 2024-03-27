@@ -1,4 +1,4 @@
-const expansionIDs = `query {
+const queryExpansionIDs = `query {
 	worldData {
 		expansions  {
 			name
@@ -7,4 +7,17 @@ const expansionIDs = `query {
 	}
 }`
 
-export { expansionIDs }
+const queryEncounterIDs = `query {
+	worldData {
+		expansion (id: 5)  {
+			zones {
+				encounters {
+					name
+					id
+				}
+			}
+		}
+	}
+}`
+
+export { queryExpansionIDs, queryEncounterIDs }
