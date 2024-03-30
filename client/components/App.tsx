@@ -12,6 +12,13 @@ function App() {
     serverRegion: serverRegion,
   })
 
+  const [characterEncounter, setCharacterEncounter] = useState({
+    name: 'Marbuldan',
+    serverSlug: 'frostmourne',
+    serverRegion: 'us',
+    encounterID: 2709,
+  })
+
   function onClick(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
