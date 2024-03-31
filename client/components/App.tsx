@@ -5,11 +5,13 @@ function App() {
   const [name, setName] = useState('Marbuldan')
   const [serverSlug, setServerSlug] = useState('frostmourne')
   const [serverRegion, setServerRegion] = useState('us')
+  const [encounterId, setEncounterId] = useState(2709)
 
   const [character, setCharacter] = useState({
     name: name,
     serverSlug: serverSlug,
     serverRegion: serverRegion,
+    encounterId: encounterId,
   })
 
   const [characterEncounter, setCharacterEncounter] = useState({
@@ -26,6 +28,7 @@ function App() {
       name: name,
       serverSlug: serverSlug,
       serverRegion: serverRegion,
+      encounterId: encounterId,
     })
   }
 
@@ -70,6 +73,13 @@ function App() {
           type="text"
           name="serverRegion"
           onChange={(e) => setServerRegion(e.target.value)}
+        />
+        <label htmlFor="serverRegion">Region: </label>
+        <input
+          id="encounterId"
+          type="text"
+          name="encounterId"
+          onChange={(e) => setEncounterId(Number(e.target.value))}
         />
         <button type="submit">Search</button>
       </form>

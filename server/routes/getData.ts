@@ -18,7 +18,9 @@ const tokenUrl = 'https://www.warcraftlogs.com/oauth/token'
 router.get('/', async (req, res) => {
   try {
     const { access_token, expiration } = await getToken()
-    const { name, serverSlug, serverRegion } = req.query
+    const { name, serverSlug, serverRegion, encounterId } = req.query
+
+    console.log(name, serverSlug, serverRegion, encounterId)
 
     let token = ''
 
