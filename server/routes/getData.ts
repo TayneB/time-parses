@@ -84,9 +84,13 @@ router.get('/', async (req, res) => {
 
     const characterData = await characterParses.json()
 
-    console.log(
-      characterData.data.characterData.character.encounterRankings.ranks[0]
+    const ranks =
+      characterData.data.characterData.character.encounterRankings.ranks
+    ranks.sort(
+      (a: { startTime: number }, b: { startTime: number }) =>
+        b.startTime - a.startTime
     )
+    console.log(ranks[0])
 
     res.json(await response.json())
   } catch (error) {
