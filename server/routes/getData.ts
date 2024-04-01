@@ -8,6 +8,7 @@ import {
   queryParsesBySpecAndDuration,
   queryRegionAndServer,
   queryCharacterParses,
+  queryCharacterDetailsTEST,
 } from './queries/queries'
 
 dotenv.config()
@@ -31,7 +32,7 @@ router.get('/', async (req, res) => {
     console.log(name, serverSlug, serverRegion, encounterId)
 
     let token = ''
-    let Query = ''
+    let Query = null
 
     if (expiration < new Date().getTime() || access_token === '') {
       const response = await fetch(tokenUrl, {
@@ -49,18 +50,7 @@ router.get('/', async (req, res) => {
       token = access_token
     }
 
-    // potential issue with extra "" quotation marks in the query
-    Query = `
-    query {
-      characterData {
-        character(name: "${name}", serverSlug: "${serverSlug}", serverRegion: "${serverRegion}") {
-          id
-          name
-          level
-        }
-      }
-    }
-  `
+    Query = queryCharacterDetailsTEST(name, serverSlug, serverRegion)
 
     const response = await fetch(apiUrl, {
       method: 'POST',
@@ -71,7 +61,7 @@ router.get('/', async (req, res) => {
       body: JSON.stringify({ Query }),
     })
 
-    Query = queryCharacterParses
+    Query = queryCharacterParses(name, serverSlug, serverRegion, encounterId)
 
     const characterParses = await fetch(apiUrl, {
       method: 'POST',
@@ -91,6 +81,8 @@ router.get('/', async (req, res) => {
         b.startTime - a.startTime
     )
     console.log(ranks[0])
+
+    //Query = (encounterId) => queryParsesBySpecAndDuration
 
     res.json(await response.json())
   } catch (error) {

@@ -1,4 +1,4 @@
-const queryExpansionIDs = `query {
+const queryExpansionIDs = () => `query {
 	worldData {
 		expansions  {
 			name
@@ -7,7 +7,7 @@ const queryExpansionIDs = `query {
 	}
 }`
 
-const queryEncounterIDs = `query {
+const queryEncounterIDs = () => `query {
 	worldData {
 		expansion (id: 5)  {
 			zones {
@@ -20,7 +20,7 @@ const queryEncounterIDs = `query {
 	}
 }`
 
-const queryClassesAndSpecs = `query {
+const queryClassesAndSpecs = () => `query {
 	gameData {
 		classes {
 			name
@@ -33,29 +33,56 @@ const queryClassesAndSpecs = `query {
 	}
 }`
 
-const queryParsesBySpecAndDuration = `query {
+const queryParsesBySpecAndDuration = (
+  encounterId: string,
+  className: string,
+  specName: string,
+  minDuration: string,
+  maxDuration: string
+) => `query {
 	worldData {
-		encounter (id: 2709 ){
-			characterRankings (className: "DeathKnight" specName: "Unholy" filter: "duration.200.300")
+		encounter (id: ${encounterId} ){
+			characterRankings (className: "${className}" specName: "${specName}" filter: "duration.${minDuration}.${maxDuration}")
 		}
 	}
 }`
 
-const queryCharacterParses = `query {
+const queryCharacterParses = (
+  name: string,
+  serverSlug: string,
+  serverRegion: string,
+  encounterId: number
+) => `query {
 	characterData {
-		character(name: "Marbin", serverSlug: "frostmourne", serverRegion: "us") {
-			encounterRankings(encounterID: 2709)
+		character(name: "${name}", serverSlug: "${serverSlug}", serverRegion: "${serverRegion}") {
+			encounterRankings(encounterID: ${encounterId})
 		}
 	}
 }`
 
-const queryRegionAndServer = `query {
+const queryRegionAndServer = () => `query {
 	worldData {
 		regions {name slug servers(limit: 100 page: 1){
 			data {name slug}
 		}}
 	}
 }`
+
+const queryCharacterDetailsTEST = (
+  name: string,
+  serverSlug: string,
+  serverRegion: string
+) => `
+    query {
+      characterData {
+        character(name: "${name}", serverSlug: "${serverSlug}", serverRegion: "${serverRegion}") {
+          id
+          name
+          level
+        }
+      }
+    }
+  `
 
 export {
   queryExpansionIDs,
@@ -64,4 +91,5 @@ export {
   queryParsesBySpecAndDuration,
   queryRegionAndServer,
   queryCharacterParses,
+  queryCharacterDetailsTEST,
 }
