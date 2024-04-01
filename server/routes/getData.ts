@@ -1,6 +1,14 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import { getToken, updateToken } from '../db/functions/token'
+import {
+  queryExpansionIDs,
+  queryEncounterIDs,
+  queryClassesAndSpecs,
+  queryParsesBySpecAndDuration,
+  queryRegionAndServer,
+  queryCharacterParses,
+} from './queries/queries'
 
 dotenv.config()
 const router = express.Router()
@@ -23,6 +31,7 @@ router.get('/', async (req, res) => {
     console.log(name, serverSlug, serverRegion, encounterId)
 
     let token = ''
+    let Query = ''
 
     if (expiration < new Date().getTime() || access_token === '') {
       const response = await fetch(tokenUrl, {
@@ -41,7 +50,7 @@ router.get('/', async (req, res) => {
     }
 
     // potential issue with extra "" quotation marks in the query
-    const Query = `
+    Query = `
     query {
       characterData {
         character(name: "${name}", serverSlug: "${serverSlug}", serverRegion: "${serverRegion}") {
