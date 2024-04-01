@@ -80,9 +80,33 @@ router.get('/', async (req, res) => {
       (a: { startTime: number }, b: { startTime: number }) =>
         b.startTime - a.startTime
     )
-    console.log(ranks[0])
+    console.log(ranks[0].spec, ranks[0].class, ranks[0].duration)
 
-    //Query = (encounterId) => queryParsesBySpecAndDuration
+    const { spec, duration } = await ranks[0]
+    const className = ranks[0].class
+
+    const minDuration = duration / 1000 - 100
+    const maxDuration = duration / 1000 + 100
+
+    Query = queryParsesBySpecAndDuration(
+      encounterId,
+      // className,
+      spec,
+      minDuration,
+      maxDuration
+    )
+
+    const reccomendedParsesData = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ Query }),
+    })
+
+    const reccomendedParses = await reccomendedParsesData.json()
+    console.log(reccomendedParses.data.worldData.encounter.characterRankings)
 
     res.json(await response.json())
   } catch (error) {

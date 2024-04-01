@@ -74,7 +74,7 @@ function App() {
           name="serverRegion"
           onChange={(e) => setServerRegion(e.target.value)}
         />
-        <label htmlFor="serverRegion">Region: </label>
+        <label htmlFor="serverRegion">EncounterId: </label>
         <input
           id="encounterId"
           type="text"
