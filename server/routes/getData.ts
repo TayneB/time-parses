@@ -83,14 +83,29 @@ router.get('/', async (req, res) => {
     console.log(ranks[0].spec, ranks[0].class, ranks[0].duration)
 
     const { spec, duration } = await ranks[0]
-    const className = ranks[0].class
 
     const minDuration = duration / 1000 - 100
     const maxDuration = duration / 1000 + 100
 
+    Query = queryClassesAndSpecs()
+
+    const classesAndSpecsData = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ Query }),
+    })
+
+    const classesAndSpecs = await classesAndSpecsData.json()
+    const className = classesAndSpecs.data.gameData.classes.find(
+      (classObj: { id: number }) => classObj.id === ranks[0].class
+    )?.slug
+
     Query = queryParsesBySpecAndDuration(
       encounterId,
-      // className,
+      className,
       spec,
       minDuration,
       maxDuration

@@ -36,14 +36,14 @@ const queryClassesAndSpecs = () => `query {
 
 const queryParsesBySpecAndDuration = (
   encounterId: string,
-  // className: string,
+  className: string,
   spec: string,
   minDuration: string,
   maxDuration: string
 ) => `query {
 	worldData {
 		encounter (id: ${encounterId} ){
-			characterRankings (className: "DeathKnight" specName: "${spec}" filter: "duration.${minDuration}.${maxDuration}")
+			characterRankings (className: "${className}" specName: "${spec}" filter: "duration.${minDuration}.${maxDuration}")
 		}
 	}
 }`

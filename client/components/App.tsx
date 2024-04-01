@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useParses } from '../hooks/useParses'
 
 function App() {
-  const [name, setName] = useState('Marbuldan')
+  const [name, setName] = useState('Marbin')
   const [serverSlug, setServerSlug] = useState('frostmourne')
   const [serverRegion, setServerRegion] = useState('us')
   const [encounterId, setEncounterId] = useState(2709)
