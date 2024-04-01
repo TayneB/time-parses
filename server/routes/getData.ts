@@ -70,6 +70,24 @@ router.get('/', async (req, res) => {
       },
       body: JSON.stringify({ Query }),
     })
+
+    Query = queryCharacterParses
+
+    const characterParses = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ Query }),
+    })
+
+    const characterData = await characterParses.json()
+
+    console.log(
+      characterData.data.characterData.character.encounterRankings.ranks[0]
+    )
+
     res.json(await response.json())
   } catch (error) {
     console.log(error)
