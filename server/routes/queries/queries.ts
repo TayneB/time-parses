@@ -25,6 +25,7 @@ const queryClassesAndSpecs = () => `query {
 		classes {
 			name
 			slug
+      id
 			specs {
 				name
 				slug
