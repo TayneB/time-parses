@@ -5,6 +5,7 @@ export function useParses(character: {
   name: string
   serverSlug: string
   serverRegion: string
+  encounterId: number
 }) {
   const query = useQuery({
     queryKey: ['parses', character],
