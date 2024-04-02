@@ -14,6 +14,13 @@ import {
 dotenv.config()
 const router = express.Router()
 
+interface QueryParams {
+  name: string
+  serverSlug: string
+  serverRegion: string
+  encounterId: number
+}
+
 const clientId = process.env.CLIENT_ID
 const clientSecret = process.env.CLIENT_SECRET
 const clientCredentials = Buffer.from(`${clientId}:${clientSecret}`).toString(
@@ -28,6 +35,17 @@ router.get('/', async (req, res) => {
   try {
     const { access_token, expiration } = await getToken()
     const { name, serverSlug, serverRegion, encounterId } = req.query
+
+    if (!name || !serverSlug || !serverRegion || !encounterId) {
+      throw new Error('Missing or invalid query parameters')
+    }
+
+    const queryParams: QueryParams = {
+      name: name as string,
+      serverSlug: serverSlug as string,
+      serverRegion: serverRegion as string,
+      encounterId: Number(encounterId) as number,
+    }
 
     console.log(name, serverSlug, serverRegion, encounterId)
 
@@ -50,7 +68,11 @@ router.get('/', async (req, res) => {
       token = access_token
     }
 
-    Query = queryCharacterDetailsTEST(name, serverSlug, serverRegion)
+    Query = queryCharacterDetailsTEST(
+      queryParams.name,
+      queryParams.serverSlug,
+      queryParams.serverRegion
+    )
 
     const response = await fetch(apiUrl, {
       method: 'POST',
@@ -61,7 +83,12 @@ router.get('/', async (req, res) => {
       body: JSON.stringify({ Query }),
     })
 
-    Query = queryCharacterParses(name, serverSlug, serverRegion, encounterId)
+    Query = queryCharacterParses(
+      queryParams.name,
+      queryParams.serverSlug,
+      queryParams.serverRegion,
+      queryParams.encounterId
+    )
 
     const characterParses = await fetch(apiUrl, {
       method: 'POST',
@@ -104,7 +131,7 @@ router.get('/', async (req, res) => {
     )?.slug
 
     Query = queryParsesBySpecAndDuration(
-      encounterId,
+      queryParams.encounterId,
       className,
       spec,
       minDuration,
