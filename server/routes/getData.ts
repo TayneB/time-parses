@@ -111,8 +111,8 @@ router.get('/', async (req, res) => {
 
     const { spec, duration } = await ranks[0]
 
-    const minDuration = duration / 1000 - 100
-    const maxDuration = duration / 1000 + 100
+    const minDuration = duration / 1000 - 20
+    const maxDuration = duration / 1000 + 20
 
     Query = queryClassesAndSpecs()
 
