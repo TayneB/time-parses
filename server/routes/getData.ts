@@ -150,7 +150,7 @@ router.get('/', async (req, res) => {
     const reccomendedParses = await reccomendedParsesData.json()
     console.log(reccomendedParses.data.worldData.encounter.characterRankings)
 
-    res.json(await response.json())
+    res.json(reccomendedParses)
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: 'Something went wrong' })
