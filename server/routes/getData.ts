@@ -111,9 +111,10 @@ router.get('/', async (req, res) => {
 
     const { spec, duration } = await ranks[0]
 
-    const minDuration = duration / 1000 - 20
-    const maxDuration = duration / 1000 + 20
+    const minDuration = Math.floor(duration / 1000 - 10)
+    const maxDuration = Math.ceil(duration / 1000 + 10)
 
+    console.log(minDuration, maxDuration)
     Query = queryClassesAndSpecs()
 
     const classesAndSpecsData = await fetch(apiUrl, {
@@ -148,7 +149,9 @@ router.get('/', async (req, res) => {
     })
 
     const reccomendedParses = await reccomendedParsesData.json()
-    console.log(reccomendedParses.data.worldData.encounter.characterRankings)
+    console.log(
+      reccomendedParses.data.worldData.encounter.characterRankings.rankings
+    )
 
     res.json(reccomendedParses)
   } catch (error) {
