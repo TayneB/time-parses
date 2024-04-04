@@ -1,8 +1,4 @@
 export interface ParseData {
-  data: Data
-}
-
-export interface Data {
   worldData: WorldData
 }
 
@@ -23,18 +19,29 @@ export interface CharacterRankings {
 
 export interface Ranking {
   name: string
-  class: string
-  spec: string
+  class: Class
+  spec: Spec
   amount: number
   hardModeLevel: number
   duration: number
   startTime: number
   report: Report
-  hidden?: boolean
+  guild?: Guild
+  server?: Server
   bracketData: number
   faction: number
   rank: number
-  server?: Server
+  hidden?: boolean
+}
+
+export enum Class {
+  DeathKnight = 'DeathKnight',
+}
+
+export interface Guild {
+  id: number
+  name: string
+  faction: number
 }
 
 export interface Report {
@@ -46,5 +53,15 @@ export interface Report {
 export interface Server {
   id: number
   name: string
-  region: string
+  region: Region
+}
+
+export enum Region {
+  Eu = 'EU',
+  Kr = 'KR',
+  Us = 'US',
+}
+
+export enum Spec {
+  Unholy = 'Unholy',
 }

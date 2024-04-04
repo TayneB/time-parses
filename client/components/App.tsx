@@ -34,16 +34,16 @@ function App() {
   if (!data || isLoading) {
     return <p>Loading...</p>
   }
-  // console.log(data.character)
+
+  console.log(data.worldData)
 
   return (
     <>
       <header className="header">
-        <h1>{data.data.worldData.encounter.characterRankings.count}</h1>
+        <h1>{data.worldData.encounter.characterRankings.rankings[0].name}</h1>
       </header>
       <section className="main">
-        Level: {data.data.worldData.encounter.characterRankings.count} - Id:{' '}
-        {data.data.worldData.encounter.characterRankings.count}
+        Level: {} - Id: {}
       </section>
       <form onSubmit={onClick}>
         <label htmlFor="name">Character: </label>
