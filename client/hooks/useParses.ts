@@ -11,5 +11,7 @@ export function useParses(character: {
     queryKey: ['parses', character],
     queryFn: () => getCharacterData(character),
   })
+  const data = query.isSuccess ? query.data : null
+  console.log(data)
   return { ...query }
 }

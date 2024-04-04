@@ -14,13 +14,6 @@ function App() {
     encounterId: encounterId,
   })
 
-  const [characterEncounter, setCharacterEncounter] = useState({
-    name: 'Marbuldan',
-    serverSlug: 'frostmourne',
-    serverRegion: 'us',
-    encounterID: 2709,
-  })
-
   function onClick(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
@@ -41,16 +34,16 @@ function App() {
   if (!data || isLoading) {
     return <p>Loading...</p>
   }
-
   // console.log(data.character)
 
   return (
     <>
       <header className="header">
-        <h1>{data.character.name}</h1>
+        <h1>{data.data.worldData.encounter.characterRankings.count}</h1>
       </header>
       <section className="main">
-        Level: {data.character.level} - Id: {data.character.id}
+        Level: {data.data.worldData.encounter.characterRankings.count} - Id:{' '}
+        {data.data.worldData.encounter.characterRankings.count}
       </section>
       <form onSubmit={onClick}>
         <label htmlFor="name">Character: </label>
