@@ -48,7 +48,7 @@ router.get('/', async (req, res) => {
     }
 
     console.log(name, serverSlug, serverRegion, encounterId)
-
+    // let there be light
     let token = ''
     let Query = null
 
