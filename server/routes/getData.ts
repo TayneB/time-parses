@@ -150,7 +150,7 @@ router.get('/', async (req, res) => {
 
     const reccomendedParses = await reccomendedParsesData.json()
     console.log(
-      reccomendedParses.data.worldData.encounter.characterRankings.rankings
+      reccomendedParses /* .data.worldData.encounter.characterRankings.rankings */
     )
 
     res.json(reccomendedParses)
