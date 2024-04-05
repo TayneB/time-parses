@@ -22,3 +22,9 @@ export async function getCharacterData(character: {
   console.log(data)
   return data
 }
+
+export async function getEncounterDetails(): Promise<ParseData> {
+  const { data } = await request.get(rootUrl).then((res) => res.body)
+  console.log(data)
+  return data
+}
