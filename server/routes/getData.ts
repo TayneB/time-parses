@@ -191,7 +191,11 @@ router.get('/encounters', async (req, res) => {
       body: JSON.stringify({ Query }),
     })
 
-    res.json(encounters.json())
+    const jsonEncounters = await encounters.json()
+
+    console.log(jsonEncounters)
+
+    res.json(jsonEncounters)
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: 'Something went wrong' })
