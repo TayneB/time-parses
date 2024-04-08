@@ -160,4 +160,42 @@ router.get('/', async (req, res) => {
   }
 })
 
+router.get('/encounters', async (req, res) => {
+  try {
+    const { access_token, expiration } = await getToken()
+    let token = ''
+    if (expiration < new Date().getTime() || access_token === '') {
+      const response = await fetch(tokenUrl, {
+        method: 'POST',
+        body: 'grant_type=client_credentials',
+        headers: {
+          Authorization: `Basic ${clientCredentials}`,
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      })
+      const data = await response.json()
+      await updateToken(data)
+      token = data.access_token
+    } else {
+      token = access_token
+    }
+
+    const Query = queryEncounterIDs()
+
+    const encounters = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ Query }),
+    })
+
+    res.json(encounters.json())
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: 'Something went wrong' })
+  }
+})
+
 export default router
