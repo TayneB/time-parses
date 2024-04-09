@@ -74,7 +74,7 @@ function App() {
           name="encounterId"
           onChange={(e) => setEncounterId(Number(e.target.value))}
         />
-        <button type="submit">Search</button>
+        <button type="submit">Find</button>
       </form>
     </>
   )
