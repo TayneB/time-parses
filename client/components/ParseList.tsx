@@ -1,10 +1,20 @@
-function ParseList(
-  name: string,
-  spec: string,
-  duration: number,
-  code: string,
+import React from 'react'
+
+interface ParseListProps {
+  name: string
+  spec: string
+  duration: number
+  code: string
   fightID: number
-) {
+}
+
+const ParseList: React.FC<ParseListProps> = ({
+  name,
+  spec,
+  duration,
+  code,
+  fightID,
+}) => {
   const modDuration = duration / 1000
 
   return (

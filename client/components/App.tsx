@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useParses } from '../hooks/useParses'
+import ParseList from './ParseList'
 
 function App() {
   const [name, setName] = useState('Marbin')
@@ -76,6 +77,20 @@ function App() {
         />
         <button type="submit">Find</button>
       </form>
+      {data.worldData.encounter.characterRankings.rankings.map(function (
+        ranking
+      ) {
+        return (
+          <ParseList
+            key={ranking.amount}
+            name={ranking.name}
+            spec={ranking.spec}
+            duration={ranking.duration}
+            code={ranking.report.code}
+            fightID={ranking.report.fightID}
+          />
+        )
+      })}
     </>
   )
 }
