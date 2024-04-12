@@ -48,7 +48,7 @@ router.get('/', async (req, res) => {
     }
 
     console.log(name, serverSlug, serverRegion, encounterId)
-
+    // let there be light
     let token = ''
     let Query = null
 
@@ -111,9 +111,10 @@ router.get('/', async (req, res) => {
 
     const { spec, duration } = await ranks[0]
 
-    const minDuration = duration / 1000 - 100
-    const maxDuration = duration / 1000 + 100
+    const minDuration = Math.floor(duration / 1000 - 10)
+    const maxDuration = Math.ceil(duration / 1000 + 10)
 
+    console.log(minDuration, maxDuration)
     Query = queryClassesAndSpecs()
 
     const classesAndSpecsData = await fetch(apiUrl, {
@@ -148,9 +149,53 @@ router.get('/', async (req, res) => {
     })
 
     const reccomendedParses = await reccomendedParsesData.json()
-    console.log(reccomendedParses.data.worldData.encounter.characterRankings)
+    console.log(
+      reccomendedParses /* .data.worldData.encounter.characterRankings.rankings */
+    )
 
-    res.json(await response.json())
+    res.json(reccomendedParses)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: 'Something went wrong' })
+  }
+})
+
+router.get('/encounters', async (req, res) => {
+  try {
+    const { access_token, expiration } = await getToken()
+    let token = ''
+    if (expiration < new Date().getTime() || access_token === '') {
+      const response = await fetch(tokenUrl, {
+        method: 'POST',
+        body: 'grant_type=client_credentials',
+        headers: {
+          Authorization: `Basic ${clientCredentials}`,
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      })
+      const data = await response.json()
+      await updateToken(data)
+      token = data.access_token
+    } else {
+      token = access_token
+    }
+
+    const Query = queryEncounterIDs()
+
+    const encounters = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ Query }),
+    })
+
+    const jsonEncounters = await encounters.json()
+
+    console.log(jsonEncounters)
+
+    res.json(jsonEncounters)
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: 'Something went wrong' })

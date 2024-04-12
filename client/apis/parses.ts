@@ -1,4 +1,5 @@
 import request from 'superagent'
+import type { ParseData } from '../../models/filteredParseData.ts'
 import type { CharacterData } from '../../models/character.ts'
 
 const rootUrl = '/api/v1/getData'
@@ -8,8 +9,8 @@ export async function getCharacterData(character: {
   serverSlug: string
   serverRegion: string
   encounterId: number
-}): Promise<CharacterData> {
-  const { characterData } = await request
+}): Promise<ParseData> {
+  const { data } = await request
     .get(rootUrl)
     .query({
       name: character.name,
@@ -17,6 +18,13 @@ export async function getCharacterData(character: {
       serverRegion: character.serverRegion,
       encounterId: character.encounterId,
     })
-    .then((res) => res.body.data)
-  return characterData
+    .then((res) => res.body)
+  console.log(data)
+  return data
+}
+
+export async function getEncounterDetails(): Promise<ParseData> {
+  const { data } = await request.get(rootUrl).then((res) => res.body)
+  console.log(data)
+  return data
 }

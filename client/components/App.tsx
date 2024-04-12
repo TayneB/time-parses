@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useParses } from '../hooks/useParses'
+import ParseList from './ParseList'
 
 function App() {
   const [name, setName] = useState('Marbin')
@@ -12,13 +13,6 @@ function App() {
     serverSlug: serverSlug,
     serverRegion: serverRegion,
     encounterId: encounterId,
-  })
-
-  const [characterEncounter, setCharacterEncounter] = useState({
-    name: 'Marbuldan',
-    serverSlug: 'frostmourne',
-    serverRegion: 'us',
-    encounterID: 2709,
   })
 
   function onClick(e: React.FormEvent<HTMLFormElement>) {
@@ -42,15 +36,15 @@ function App() {
     return <p>Loading...</p>
   }
 
-  // console.log(data.character)
+  console.log(data.worldData)
 
   return (
     <>
       <header className="header">
-        <h1>{data.character.name}</h1>
+        <h1>{name}</h1>
       </header>
       <section className="main">
-        Level: {data.character.level} - Id: {data.character.id}
+        Level: {} - Id: {}
       </section>
       <form onSubmit={onClick}>
         <label htmlFor="name">Character: </label>
@@ -81,8 +75,24 @@ function App() {
           name="encounterId"
           onChange={(e) => setEncounterId(Number(e.target.value))}
         />
-        <button type="submit">Search</button>
+        <button type="submit">Find</button>
       </form>
+      {data.worldData.encounter.characterRankings.rankings.map(function (
+        ranking
+      ) {
+        return (
+          <ParseList
+            key={ranking.amount}
+            name={ranking.name}
+            spec={ranking.spec}
+            duration={ranking.duration}
+            amount={ranking.amount}
+            ilvl={ranking.bracketData}
+            code={ranking.report.code}
+            fightID={ranking.report.fightID}
+          />
+        )
+      })}
     </>
   )
 }
