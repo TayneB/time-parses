@@ -41,7 +41,7 @@ function App() {
   return (
     <>
       <header className="header">
-        <h1>{data.worldData.encounter.characterRankings.rankings[0].name}</h1>
+        <h1>{name}</h1>
       </header>
       <section className="main">
         Level: {} - Id: {}
@@ -86,6 +86,8 @@ function App() {
             name={ranking.name}
             spec={ranking.spec}
             duration={ranking.duration}
+            amount={ranking.amount}
+            ilvl={ranking.bracketData}
             code={ranking.report.code}
             fightID={ranking.report.fightID}
           />
