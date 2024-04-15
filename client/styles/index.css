@@ -13,6 +13,7 @@ label {
   left: 50%;
   transform: translate(-50%, -50%);
   max-height: calc(100% - 2.5rem);
+  width: 80%;
 }
 
 form {
@@ -20,4 +21,16 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (min-width: 578px) {
+  .centered {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 662px) {
+  .centered {
+    width: auto;
+  }
 }
