@@ -15,6 +15,8 @@ function App() {
     encounterId: encounterId,
   })
 
+  console.log('TEST DATA STILL PRESENT')
+
   function onClick(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
@@ -40,59 +42,55 @@ function App() {
 
   return (
     <>
-      <header className="header">
-        <h1>{name}</h1>
-      </header>
-      <section className="main">
-        Level: {} - Id: {}
-      </section>
-      <form onSubmit={onClick}>
-        <label htmlFor="name">Character: </label>
-        <input
-          id="name"
-          type="text"
-          name="name"
-          onChange={(e) => setName(e.target.value)}
-        />
-        <label htmlFor="serverSlug">Server: </label>
-        <input
-          id="serverSlug"
-          type="text"
-          name="serverSlug"
-          onChange={(e) => setServerSlug(e.target.value)}
-        />
-        <label htmlFor="serverRegion">Region: </label>
-        <input
-          id="serverRegion"
-          type="text"
-          name="serverRegion"
-          onChange={(e) => setServerRegion(e.target.value)}
-        />
-        <label htmlFor="serverRegion">EncounterId: </label>
-        <input
-          id="encounterId"
-          type="text"
-          name="encounterId"
-          onChange={(e) => setEncounterId(Number(e.target.value))}
-        />
-        <button type="submit">Find</button>
-      </form>
-      {data.worldData.encounter.characterRankings.rankings.map(function (
-        ranking
-      ) {
-        return (
-          <ParseList
-            key={ranking.amount}
-            name={ranking.name}
-            spec={ranking.spec}
-            duration={ranking.duration}
-            amount={ranking.amount}
-            ilvl={ranking.bracketData}
-            code={ranking.report.code}
-            fightID={ranking.report.fightID}
+      <div className="centered">
+        <form onSubmit={onClick}>
+          <label htmlFor="name">Character: </label>
+          <input
+            id="name"
+            type="text"
+            name="name"
+            onChange={(e) => setName(e.target.value)}
           />
-        )
-      })}
+          <label htmlFor="serverSlug">Server: </label>
+          <input
+            id="serverSlug"
+            type="text"
+            name="serverSlug"
+            onChange={(e) => setServerSlug(e.target.value)}
+          />
+          <label htmlFor="serverRegion">Region: </label>
+          <input
+            id="serverRegion"
+            type="text"
+            name="serverRegion"
+            onChange={(e) => setServerRegion(e.target.value)}
+          />
+          <label htmlFor="serverRegion">EncounterId: </label>
+          <input
+            id="encounterId"
+            type="text"
+            name="encounterId"
+            onChange={(e) => setEncounterId(Number(e.target.value))}
+          />
+          <button type="submit">Find</button>
+        </form>
+        {data.worldData.encounter.characterRankings.rankings.map(function (
+          ranking
+        ) {
+          return (
+            <ParseList
+              key={ranking.amount}
+              name={ranking.name}
+              spec={ranking.spec}
+              duration={ranking.duration}
+              amount={ranking.amount}
+              ilvl={ranking.bracketData}
+              code={ranking.report.code}
+              fightID={ranking.report.fightID}
+            />
+          )
+        })}
+      </div>
     </>
   )
 }
