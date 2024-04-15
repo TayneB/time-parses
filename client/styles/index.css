@@ -31,6 +31,12 @@ form {
 
 @media screen and (min-width: 662px) {
   .centered {
+    width: 65%;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .centered {
     width: auto;
   }
 }
