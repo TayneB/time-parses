@@ -1,5 +1,6 @@
 input {
   display: block;
+  border: 1px solid #000000;
 }
 label {
   display: block;
@@ -104,6 +105,11 @@ label {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     margin-top: 0rem;
+  }
+
+  input {
+    margin-top: 0.2rem;
+    height: 1.1rem;
   }
 }
 
