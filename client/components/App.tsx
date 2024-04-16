@@ -43,35 +43,43 @@ function App() {
   return (
     <>
       <div className="centered">
-        <form onSubmit={onClick}>
-          <label htmlFor="name">Character: </label>
-          <input
-            id="name"
-            type="text"
-            name="name"
-            onChange={(e) => setName(e.target.value)}
-          />
-          <label htmlFor="serverSlug">Server: </label>
-          <input
-            id="serverSlug"
-            type="text"
-            name="serverSlug"
-            onChange={(e) => setServerSlug(e.target.value)}
-          />
-          <label htmlFor="serverRegion">Region: </label>
-          <input
-            id="serverRegion"
-            type="text"
-            name="serverRegion"
-            onChange={(e) => setServerRegion(e.target.value)}
-          />
-          <label htmlFor="serverRegion">EncounterId: </label>
-          <input
-            id="encounterId"
-            type="text"
-            name="encounterId"
-            onChange={(e) => setEncounterId(Number(e.target.value))}
-          />
+        <form onSubmit={onClick} className="form-container">
+          <div>
+            <label htmlFor="name">Character: </label>
+            <input
+              id="name"
+              type="text"
+              name="name"
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="serverSlug">Server: </label>
+            <input
+              id="serverSlug"
+              type="text"
+              name="serverSlug"
+              onChange={(e) => setServerSlug(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="serverRegion">Region: </label>
+            <input
+              id="serverRegion"
+              type="text"
+              name="serverRegion"
+              onChange={(e) => setServerRegion(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="serverRegion">EncounterId: </label>
+            <input
+              id="encounterId"
+              type="text"
+              name="encounterId"
+              onChange={(e) => setEncounterId(Number(e.target.value))}
+            />
+          </div>
           <button type="submit">Find</button>
         </form>
         {data.worldData.encounter.characterRankings.rankings.map(function (

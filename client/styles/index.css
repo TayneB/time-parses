@@ -27,6 +27,13 @@ form {
   .centered {
     width: 70%;
   }
+
+  form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 @media screen and (min-width: 662px) {
