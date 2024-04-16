@@ -23,27 +23,29 @@ form {
   align-items: center;
 }
 
+.form-field {
+  margin: 0 auto;
+}
+
+.form-button {
+  margin: 0 auto;
+}
+
 @media screen and (min-width: 578px) {
   .centered {
-    width: 70%;
+    width: 30rem;
   }
 
   form {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    width: 50%;
+    grid-template-columns: repeat(1, 1fr) 0rem;
+    grid-template-rows: repeat(1, auto);
+    grid-gap: 0rem;
   }
-}
 
-@media screen and (min-width: 662px) {
-  .centered {
-    width: 65%;
-  }
-}
-
-@media screen and (min-width: 700px) {
-  .centered {
-    width: auto;
+  .form-button {
+    grid-column-start: 1;
+    margin: 0 auto;
   }
 }

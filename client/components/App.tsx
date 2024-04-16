@@ -44,7 +44,7 @@ function App() {
     <>
       <div className="centered">
         <form onSubmit={onClick} className="form-container">
-          <div>
+          <div className="form-field">
             <label htmlFor="name">Character: </label>
             <input
               id="name"
@@ -53,7 +53,7 @@ function App() {
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-          <div>
+          <div className="form-field">
             <label htmlFor="serverSlug">Server: </label>
             <input
               id="serverSlug"
@@ -62,7 +62,7 @@ function App() {
               onChange={(e) => setServerSlug(e.target.value)}
             />
           </div>
-          <div>
+          <div className="form-field">
             <label htmlFor="serverRegion">Region: </label>
             <input
               id="serverRegion"
@@ -71,7 +71,7 @@ function App() {
               onChange={(e) => setServerRegion(e.target.value)}
             />
           </div>
-          <div>
+          <div className="form-field">
             <label htmlFor="serverRegion">EncounterId: </label>
             <input
               id="encounterId"
@@ -80,7 +80,9 @@ function App() {
               onChange={(e) => setEncounterId(Number(e.target.value))}
             />
           </div>
-          <button type="submit">Find</button>
+          <div className="form-button">
+            <button type="submit">Find</button>
+          </div>
         </form>
         {data.worldData.encounter.characterRankings.rankings.map(function (
           ranking
