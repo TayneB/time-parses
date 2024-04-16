@@ -43,63 +43,67 @@ function App() {
   return (
     <>
       <div className="centered">
-        <form onSubmit={onClick} className="form-container">
-          <div className="form-field">
-            <label htmlFor="name">Character: </label>
-            <input
-              id="name"
-              type="text"
-              name="name"
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-          <div className="form-field">
-            <label htmlFor="serverSlug">Server: </label>
-            <input
-              id="serverSlug"
-              type="text"
-              name="serverSlug"
-              onChange={(e) => setServerSlug(e.target.value)}
-            />
-          </div>
-          <div className="form-field">
-            <label htmlFor="serverRegion">Region: </label>
-            <input
-              id="serverRegion"
-              type="text"
-              name="serverRegion"
-              onChange={(e) => setServerRegion(e.target.value)}
-            />
-          </div>
-          <div className="form-field">
-            <label htmlFor="serverRegion">EncounterId: </label>
-            <input
-              id="encounterId"
-              type="text"
-              name="encounterId"
-              onChange={(e) => setEncounterId(Number(e.target.value))}
-            />
+        <form onSubmit={onClick}>
+          <div className="form-container">
+            <div className="form-field">
+              <label htmlFor="name">Character: </label>
+              <input
+                id="name"
+                type="text"
+                name="name"
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="form-field">
+              <label htmlFor="serverSlug">Server: </label>
+              <input
+                id="serverSlug"
+                type="text"
+                name="serverSlug"
+                onChange={(e) => setServerSlug(e.target.value)}
+              />
+            </div>
+            <div className="form-field">
+              <label htmlFor="serverRegion">Region: </label>
+              <input
+                id="serverRegion"
+                type="text"
+                name="serverRegion"
+                onChange={(e) => setServerRegion(e.target.value)}
+              />
+            </div>
+            <div className="form-field">
+              <label htmlFor="serverRegion">EncounterId: </label>
+              <input
+                id="encounterId"
+                type="text"
+                name="encounterId"
+                onChange={(e) => setEncounterId(Number(e.target.value))}
+              />
+            </div>
           </div>
           <div className="form-button">
             <button type="submit">Find</button>
           </div>
         </form>
-        {data.worldData.encounter.characterRankings.rankings.map(function (
-          ranking
-        ) {
-          return (
-            <ParseList
-              key={ranking.amount}
-              name={ranking.name}
-              spec={ranking.spec}
-              duration={ranking.duration}
-              amount={ranking.amount}
-              ilvl={ranking.bracketData}
-              code={ranking.report.code}
-              fightID={ranking.report.fightID}
-            />
-          )
-        })}
+        <div className="parse-list">
+          {data.worldData.encounter.characterRankings.rankings.map(function (
+            ranking
+          ) {
+            return (
+              <ParseList
+                key={ranking.amount}
+                name={ranking.name}
+                spec={ranking.spec}
+                duration={ranking.duration}
+                amount={ranking.amount}
+                ilvl={ranking.bracketData}
+                code={ranking.report.code}
+                fightID={ranking.report.fightID}
+              />
+            )
+          })}
+        </div>
       </div>
     </>
   )
