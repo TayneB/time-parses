@@ -52,7 +52,7 @@ function App() {
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-            <div className="form-field">
+            {/* <div className="form-field">
               <label htmlFor="serverSlug">Server: </label>
               <select
                 id="serverSlug"
@@ -63,8 +63,8 @@ function App() {
                 <option value="frostmourne">frostmourne</option>
                 <option value="frne">Frourne</option>
               </select>
-            </div>
-            {/* <div className="form-field">
+            </div> */}
+            <div className="form-field">
               <label htmlFor="serverSlug">Server: </label>
               <input
                 id="serverSlug"
@@ -72,7 +72,7 @@ function App() {
                 name="name"
                 onChange={(e) => setServerSlug(e.target.value)}
               />
-            </div> */}
+            </div>
             <div className="form-field">
               <label htmlFor="serverRegion">Region: </label>
               <input
@@ -101,7 +101,7 @@ function App() {
             <p className="search-status">
               Couldn&apos;t find that character...
             </p>
-          ) : fetchStatus === 'idle' ? (
+          ) : fetchStatus === 'idle' && !data ? (
             <p className="search-status">Please Add Your Character Details!</p>
           ) : !data || isLoading ? (
             <p className="search-status">Loading...</p>
