@@ -28,14 +28,6 @@ function App() {
 
   const { data, isLoading, isError, fetchStatus } = useParses(character)
 
-  /* if (isError) {
-    return <p>Something went wrong...</p>
-  }
-
-  if (!data || isLoading) {
-    return <p>Loading...</p>
-  } */
-
   return (
     <>
       <div className="centered">
@@ -84,11 +76,13 @@ function App() {
         </form>
         <div className="parse-list">
           {isError ? (
-            <p>Couldn&apos;t find that character...</p>
+            <p className="search-status">
+              Couldn&apos;t find that character...
+            </p>
           ) : fetchStatus === 'idle' ? (
-            <p>Please Add Your Character Data!</p>
+            <p className="search-status">Please Add Your Character Details!</p>
           ) : !data || isLoading ? (
-            <p>Loading...</p>
+            <p className="search-status">Loading...</p>
           ) : (
             data?.worldData?.encounter?.characterRankings?.rankings?.map(
               (ranking) => (
