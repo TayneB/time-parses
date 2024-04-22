@@ -3,10 +3,10 @@ import { useParses } from '../hooks/useParses'
 import ParseList from './ParseList'
 
 function App() {
-  const [name, setName] = useState('Marbin')
-  const [serverSlug, setServerSlug] = useState('frostmourne')
-  const [serverRegion, setServerRegion] = useState('us')
-  const [encounterId, setEncounterId] = useState(2709)
+  const [name, setName] = useState('')
+  const [serverSlug, setServerSlug] = useState('')
+  const [serverRegion, setServerRegion] = useState('')
+  const [encounterId, setEncounterId] = useState(0)
 
   const [character, setCharacter] = useState({
     name: name,
@@ -26,73 +26,81 @@ function App() {
     })
   }
 
-  const { data, isLoading, isError } = useParses(character)
-
-  if (isError) {
-    return <p>Something went wrong...</p>
-  }
-
-  if (!data || isLoading) {
-    return <p>Loading...</p>
-  }
-
-  console.log(data.worldData)
+  const { data, isLoading, isError, fetchStatus } = useParses(character)
 
   return (
     <>
-      <header className="header">
-        <h1>{name}</h1>
-      </header>
-      <section className="main">
-        Level: {} - Id: {}
-      </section>
-      <form onSubmit={onClick}>
-        <label htmlFor="name">Character: </label>
-        <input
-          id="name"
-          type="text"
-          name="name"
-          onChange={(e) => setName(e.target.value)}
-        />
-        <label htmlFor="serverSlug">Server: </label>
-        <input
-          id="serverSlug"
-          type="text"
-          name="serverSlug"
-          onChange={(e) => setServerSlug(e.target.value)}
-        />
-        <label htmlFor="serverRegion">Region: </label>
-        <input
-          id="serverRegion"
-          type="text"
-          name="serverRegion"
-          onChange={(e) => setServerRegion(e.target.value)}
-        />
-        <label htmlFor="serverRegion">EncounterId: </label>
-        <input
-          id="encounterId"
-          type="text"
-          name="encounterId"
-          onChange={(e) => setEncounterId(Number(e.target.value))}
-        />
-        <button type="submit">Find</button>
-      </form>
-      {data.worldData.encounter.characterRankings.rankings.map(function (
-        ranking
-      ) {
-        return (
-          <ParseList
-            key={ranking.amount}
-            name={ranking.name}
-            spec={ranking.spec}
-            duration={ranking.duration}
-            amount={ranking.amount}
-            ilvl={ranking.bracketData}
-            code={ranking.report.code}
-            fightID={ranking.report.fightID}
-          />
-        )
-      })}
+      <div className="centered">
+        <form onSubmit={onClick}>
+          <div className="form-container">
+            <div className="form-field">
+              <label htmlFor="name">Character Name: </label>
+              <input
+                id="name"
+                type="text"
+                name="name"
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="form-field">
+              <label htmlFor="serverSlug">Server: </label>
+              <input
+                id="serverSlug"
+                type="text"
+                name="serverSlug"
+                onChange={(e) => setServerSlug(e.target.value)}
+              />
+            </div>
+            <div className="form-field">
+              <label htmlFor="serverRegion">Region: </label>
+              <input
+                id="serverRegion"
+                type="text"
+                name="serverRegion"
+                onChange={(e) => setServerRegion(e.target.value)}
+              />
+            </div>
+            <div className="form-field">
+              <label htmlFor="serverRegion">EncounterId: </label>
+              <input
+                id="encounterId"
+                type="text"
+                name="encounterId"
+                onChange={(e) => setEncounterId(Number(e.target.value))}
+              />
+            </div>
+          </div>
+          <div className="form-button">
+            <button type="submit">Find</button>
+          </div>
+        </form>
+        <div className="parse-list">
+          {isError ? (
+            <p className="search-status">
+              Couldn&apos;t find that character...
+            </p>
+          ) : fetchStatus === 'idle' ? (
+            <p className="search-status">Please Add Your Character Details!</p>
+          ) : !data || isLoading ? (
+            <p className="search-status">Loading...</p>
+          ) : (
+            data?.worldData?.encounter?.characterRankings?.rankings?.map(
+              (ranking) => (
+                <ParseList
+                  key={ranking.amount}
+                  name={ranking.name}
+                  spec={ranking.spec}
+                  duration={ranking.duration}
+                  amount={ranking.amount}
+                  ilvl={ranking.bracketData}
+                  code={ranking.report.code}
+                  fightID={ranking.report.fightID}
+                />
+              )
+            )
+          )}
+        </div>
+      </div>
     </>
   )
 }
