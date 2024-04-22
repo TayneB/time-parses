@@ -26,6 +26,16 @@ function App() {
     })
   }
 
+  {
+    /* <select
+                id="serverSlug"
+                name="serverSlug"
+                onChange={(e) => setServerSlug(e.target.value)}
+              >
+                <option value="frostmourne">Volvo</option>
+              </select> */
+  }
+
   const { data, isLoading, isError, fetchStatus } = useParses(character)
 
   return (
@@ -44,13 +54,25 @@ function App() {
             </div>
             <div className="form-field">
               <label htmlFor="serverSlug">Server: </label>
+              <select
+                id="serverSlug"
+                name="serverSlug"
+                value={serverSlug}
+                onChange={(e) => setServerSlug(e.target.value)}
+              >
+                <option value="frostmourne">frostmourne</option>
+                <option value="frne">Frourne</option>
+              </select>
+            </div>
+            {/* <div className="form-field">
+              <label htmlFor="serverSlug">Server: </label>
               <input
                 id="serverSlug"
                 type="text"
-                name="serverSlug"
+                name="name"
                 onChange={(e) => setServerSlug(e.target.value)}
               />
-            </div>
+            </div> */}
             <div className="form-field">
               <label htmlFor="serverRegion">Region: </label>
               <input
