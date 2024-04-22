@@ -34,7 +34,7 @@ function App() {
         <form onSubmit={onClick}>
           <div className="form-container">
             <div className="form-field">
-              <label htmlFor="name">Character: </label>
+              <label htmlFor="name">Character Name: </label>
               <input
                 id="name"
                 type="text"
