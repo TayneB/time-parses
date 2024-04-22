@@ -3,10 +3,10 @@ import { useParses } from '../hooks/useParses'
 import ParseList from './ParseList'
 
 function App() {
-  const [name, setName] = useState('Marbin')
-  const [serverSlug, setServerSlug] = useState('frostmourne')
-  const [serverRegion, setServerRegion] = useState('us')
-  const [encounterId, setEncounterId] = useState(2709)
+  const [name, setName] = useState('')
+  const [serverSlug, setServerSlug] = useState('')
+  const [serverRegion, setServerRegion] = useState('')
+  const [encounterId, setEncounterId] = useState(0)
 
   const [character, setCharacter] = useState({
     name: name,
@@ -14,8 +14,6 @@ function App() {
     serverRegion: serverRegion,
     encounterId: encounterId,
   })
-
-  console.log('TEST DATA STILL PRESENT')
 
   function onClick(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -30,15 +28,15 @@ function App() {
 
   const { data, isLoading, isError } = useParses(character)
 
-  if (isError) {
+  /* if (isError) {
     return <p>Something went wrong...</p>
   }
 
   if (!data || isLoading) {
     return <p>Loading...</p>
-  }
+  } */
 
-  console.log(data.worldData)
+  console.log('TEST DATA STILL PRESENT')
 
   return (
     <>
@@ -87,22 +85,26 @@ function App() {
           </div>
         </form>
         <div className="parse-list">
-          {data.worldData.encounter.characterRankings.rankings.map(function (
-            ranking
-          ) {
-            return (
-              <ParseList
-                key={ranking.amount}
-                name={ranking.name}
-                spec={ranking.spec}
-                duration={ranking.duration}
-                amount={ranking.amount}
-                ilvl={ranking.bracketData}
-                code={ranking.report.code}
-                fightID={ranking.report.fightID}
-              />
+          {isError ? (
+            <p>Couldn&apos;t find that character...</p>
+          ) : !data || isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            data?.worldData?.encounter?.characterRankings?.rankings?.map(
+              (ranking) => (
+                <ParseList
+                  key={ranking.amount}
+                  name={ranking.name}
+                  spec={ranking.spec}
+                  duration={ranking.duration}
+                  amount={ranking.amount}
+                  ilvl={ranking.bracketData}
+                  code={ranking.report.code}
+                  fightID={ranking.report.fightID}
+                />
+              )
             )
-          })}
+          )}
         </div>
       </div>
     </>
