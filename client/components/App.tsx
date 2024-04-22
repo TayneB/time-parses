@@ -26,7 +26,7 @@ function App() {
     })
   }
 
-  const { data, isLoading, isError } = useParses(character)
+  const { data, isLoading, isError, fetchStatus } = useParses(character)
 
   /* if (isError) {
     return <p>Something went wrong...</p>
@@ -35,8 +35,6 @@ function App() {
   if (!data || isLoading) {
     return <p>Loading...</p>
   } */
-
-  console.log('TEST DATA STILL PRESENT')
 
   return (
     <>
@@ -87,6 +85,8 @@ function App() {
         <div className="parse-list">
           {isError ? (
             <p>Couldn&apos;t find that character...</p>
+          ) : fetchStatus === 'idle' ? (
+            <p>Please Add Your Character Data!</p>
           ) : !data || isLoading ? (
             <p>Loading...</p>
           ) : (
