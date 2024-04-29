@@ -191,6 +191,7 @@ router.get('/encounters', async (req, res) => {
       body: JSON.stringify({ Query }),
     })
 
+    console.log(encounters)
     const jsonEncounters = await encounters.json()
 
     const raidOnlyEncounters =

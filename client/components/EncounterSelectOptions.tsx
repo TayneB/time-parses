@@ -3,8 +3,8 @@ import { useEncounterIds } from '../hooks/useParses'
 
 const EncounterSelectOptions = () => {
   const { data, isLoading, isError, fetchStatus } = useEncounterIds()
-  if (isLoading) return <p>Loading...</p>
-  if (isError) return <p>Error...</p>
+  if (isLoading) return <option>Loading</option>
+  if (isError) return <option>Error</option>
   return (
     <>
       {data[0].encounters.map((encounter, index) => (
