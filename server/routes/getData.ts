@@ -74,14 +74,14 @@ router.get('/', async (req, res) => {
       queryParams.serverRegion
     )
 
-    const response = await fetch(apiUrl, {
+    /* const response = await fetch(apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ Query }),
-    })
+    }) */
 
     Query = queryCharacterParses(
       queryParams.name,
