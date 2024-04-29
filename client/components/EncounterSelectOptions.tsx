@@ -7,7 +7,7 @@ const EncounterSelectOptions = () => {
   if (isError) return <p>Error...</p>
   return (
     <>
-      <p>{data[0].name}</p>
+      <p>{data.at(1).name}</p>
     </>
   )
 }
