@@ -1,5 +1,4 @@
 export interface EncounterData {
-  name: string
   encounters: Encounter[]
 }
 

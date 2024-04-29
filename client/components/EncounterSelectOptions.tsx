@@ -7,7 +7,11 @@ const EncounterSelectOptions = () => {
   if (isError) return <p>Error...</p>
   return (
     <>
-      <p>{data.at(1).name}</p>
+      {data[0].encounters.map((encounter, index) => (
+        <option key={index} value={encounter.id}>
+          {encounter.name}
+        </option>
+      ))}
     </>
   )
 }

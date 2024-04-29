@@ -44,7 +44,6 @@ function App() {
 
   return (
     <>
-      <EncounterSelectOptions />
       <div className="centered">
         <form onSubmit={onClick}>
           <div className="form-container">
@@ -87,14 +86,25 @@ function App() {
                 onChange={(e) => setServerRegion(e.target.value)}
               />
             </div>
-            <div className="form-field">
-              <label htmlFor="serverRegion">EncounterId: </label>
+            {/*  <div className="form-field">
+              <label htmlFor="encounterId">EncounterId: </label>
               <input
                 id="encounterId"
                 type="text"
                 name="encounterId"
                 onChange={(e) => setEncounterId(Number(e.target.value))}
               />
+            </div> */}
+            <div className="form-field">
+              <label htmlFor="encounterId">EncounterId: </label>
+              <select
+                id="encounterId"
+                name="encounterId"
+                value={encounterId}
+                onChange={(e) => setServerSlug(e.target.value)}
+              >
+                <EncounterSelectOptions />
+              </select>
             </div>
           </div>
           <div className="form-button">
