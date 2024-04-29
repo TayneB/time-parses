@@ -1,5 +1,9 @@
 import { useQuery } from '@tanstack/react-query'
-import { getCharacterData } from '../apis/parses'
+import {
+  getCharacterData,
+  getEncounterDetails,
+  /* getServerSlugs, */
+} from '../apis/parses'
 
 export function useParses(character: {
   name: string
@@ -21,3 +25,19 @@ export function useParses(character: {
   })
   return { ...query }
 }
+
+export function useEncounterIds() {
+  const query = useQuery({
+    queryKey: ['encounterDetails'],
+    queryFn: () => getEncounterDetails(),
+  })
+  return { ...query }
+}
+
+/* export function useServerSlugs() {
+  const query = useQuery({
+    queryKey: ['serverSlugs'],
+    queryFn: () => getServerSlugs(),
+  })
+  return { ...query }
+} */

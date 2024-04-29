@@ -193,9 +193,14 @@ router.get('/encounters', async (req, res) => {
 
     const jsonEncounters = await encounters.json()
 
-    console.log(jsonEncounters)
+    const raidOnlyEncounters =
+      await jsonEncounters.data.worldData.expansion.zones.filter(
+        (zone: { name: string | string[] }) =>
+          !zone.name.includes('Mythic+') && !zone.name.includes('zone-')
+      )
+    console.log(raidOnlyEncounters)
 
-    res.json(jsonEncounters)
+    res.json(raidOnlyEncounters)
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: 'Something went wrong' })

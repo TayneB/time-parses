@@ -11,6 +11,7 @@ const queryEncounterIDs = () => `query {
 	worldData {
 		expansion (id: 5)  {
 			zones {
+				name
 				encounters {
 					name
 					id

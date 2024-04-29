@@ -1,11 +1,15 @@
 import React from 'react'
+import { useEncounterIds } from '../hooks/useParses'
 
-const ParseList = () => {
+const EncounterSelectOptions = () => {
+  const { data, isLoading, isError, fetchStatus } = useEncounterIds()
+  if (isLoading) return <p>Loading...</p>
+  if (isError) return <p>Error...</p>
   return (
     <>
-      <option value="frostmourne">frostmourne</option>
+      <p>{data[0].name}</p>
     </>
   )
 }
 
-export default ParseList
+export default EncounterSelectOptions

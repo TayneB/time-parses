@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useParses } from '../hooks/useParses'
 import ParseList from './ParseList'
+import EncounterSelectOptions from './EncounterSelectOptions'
 
 // NOTE: the encounterId MUST be from the current raid tier or it cant find results
 // old raid tiers just time out because the data is not stored anymore
@@ -43,6 +44,7 @@ function App() {
 
   return (
     <>
+      <EncounterSelectOptions />
       <div className="centered">
         <form onSubmit={onClick}>
           <div className="form-container">
@@ -55,7 +57,7 @@ function App() {
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-            <div className="form-field">
+            {/* <div className="form-field">
               <label htmlFor="serverSlug">Server: </label>
               <select
                 id="serverSlug"
@@ -66,8 +68,8 @@ function App() {
                 <option value="frostmourne">frostmourne</option>
                 <option value="frne">Frourne</option>
               </select>
-            </div>
-            {/* <div className="form-field">
+            </div> */}
+            <div className="form-field">
               <label htmlFor="serverSlug">Server: </label>
               <input
                 id="serverSlug"
@@ -75,7 +77,7 @@ function App() {
                 name="name"
                 onChange={(e) => setServerSlug(e.target.value)}
               />
-            </div> */}
+            </div>
             <div className="form-field">
               <label htmlFor="serverRegion">Region: </label>
               <input
