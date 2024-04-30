@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useParses } from '../hooks/useParses'
 import ParseList from './ParseList'
 import EncounterSelectOptions from './EncounterSelectOptions'
@@ -30,6 +30,13 @@ function App() {
     })
   }
 
+  function sanitiseServerSlug(serverSlug: string) {
+    return serverSlug.replace(/\s+/g, '-').replace(/'/g, '').toLowerCase()
+  }
+
+  const handleCallback = useCallback((firstEncounterId: number) => {
+    setEncounterId(firstEncounterId)
+  }, [])
   {
     /* <select
                 id="serverSlug"
@@ -74,7 +81,9 @@ function App() {
                 id="serverSlug"
                 type="text"
                 name="name"
-                onChange={(e) => setServerSlug(e.target.value)}
+                onChange={(e) =>
+                  setServerSlug(sanitiseServerSlug(e.target.value))
+                }
               />
             </div>
             <div className="form-field">
@@ -103,7 +112,7 @@ function App() {
                 value={encounterId}
                 onChange={(e) => setEncounterId(Number(e.target.value))}
               >
-                <EncounterSelectOptions />
+                <EncounterSelectOptions handleCallback={handleCallback} />
               </select>
             </div>
           </div>
