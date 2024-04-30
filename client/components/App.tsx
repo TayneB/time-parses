@@ -101,7 +101,7 @@ function App() {
                 id="encounterId"
                 name="encounterId"
                 value={encounterId}
-                onChange={(e) => setServerSlug(e.target.value)}
+                onChange={(e) => setEncounterId(Number(e.target.value))}
               >
                 <EncounterSelectOptions />
               </select>
@@ -120,6 +120,9 @@ function App() {
             <p className="search-status">Please Add Your Character Details!</p>
           ) : !data || isLoading ? (
             <p className="search-status">Loading...</p>
+          ) : data?.worldData?.encounter?.characterRankings?.rankings.length ===
+            0 ? (
+            <p className="search-status">No parses found for your time.</p>
           ) : (
             data?.worldData?.encounter?.characterRankings?.rankings?.map(
               (ranking) => (

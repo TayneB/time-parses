@@ -7,7 +7,7 @@ const EncounterSelectOptions = () => {
   if (isError) return <option>Error</option>
   return (
     <>
-      {data[0].encounters.map((encounter, index) => (
+      {data[2].encounters.map((encounter, index) => (
         <option key={index} value={encounter.id}>
           {encounter.name}
         </option>

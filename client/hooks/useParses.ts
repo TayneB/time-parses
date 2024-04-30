@@ -22,6 +22,8 @@ export function useParses(character: {
     queryKey: ['parses', character],
     queryFn: () => getCharacterData(character),
     enabled: characterValid,
+    staleTime: Infinity,
+    cacheTime: Infinity,
   })
   return { ...query }
 }
@@ -30,6 +32,8 @@ export function useEncounterIds() {
   const query = useQuery({
     queryKey: ['encounterDetails'],
     queryFn: () => getEncounterDetails(),
+    staleTime: Infinity,
+    cacheTime: Infinity,
   })
   return { ...query }
 }
