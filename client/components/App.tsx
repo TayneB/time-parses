@@ -38,15 +38,6 @@ function App() {
   const handleCallback = useCallback((firstEncounterId: number) => {
     setEncounterId(firstEncounterId)
   }, [])
-  {
-    /* <select
-                id="serverSlug"
-                name="serverSlug"
-                onChange={(e) => setServerSlug(e.target.value)}
-              >
-                <option value="frostmourne">Volvo</option>
-              </select> */
-  }
 
   const { data, isLoading, isError, fetchStatus } = useParses(character)
 
@@ -64,18 +55,6 @@ function App() {
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-            {/* <div className="form-field">
-              <label htmlFor="serverSlug">Server: </label>
-              <select
-                id="serverSlug"
-                name="serverSlug"
-                value={serverSlug}
-                onChange={(e) => setServerSlug(e.target.value)}
-              >
-                <option value="frostmourne">frostmourne</option>
-                <option value="frne">Frourne</option>
-              </select>
-            </div> */}
             <div className="form-field">
               <label htmlFor="serverSlug">Server: </label>
               <input
@@ -87,15 +66,6 @@ function App() {
                 }
               />
             </div>
-            {/* <div className="form-field">
-              <label htmlFor="serverRegion">Region: </label>
-              <input
-                id="serverRegion"
-                type="text"
-                name="serverRegion"
-                onChange={(e) => setServerRegion(e.target.value)}
-              />
-            </div> */}
             <div className="form-field">
               <label htmlFor="serverRegion">Region: </label>
               <select
@@ -111,15 +81,6 @@ function App() {
                 <option value="CN">China</option>
               </select>
             </div>
-            {/*  <div className="form-field">
-              <label htmlFor="encounterId">EncounterId: </label>
-              <input
-                id="encounterId"
-                type="text"
-                name="encounterId"
-                onChange={(e) => setEncounterId(Number(e.target.value))}
-              />
-            </div> */}
             <div className="form-field">
               <label htmlFor="encounterId">Encounter: </label>
               <select
