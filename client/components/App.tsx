@@ -5,11 +5,12 @@ import EncounterSelectOptions from './EncounterSelectOptions'
 
 // NOTE: the encounterId MUST be from the current raid tier or it cant find results
 // old raid tiers just time out because the data is not stored anymore
+// using US as default because it's the first value to select
 
 function App() {
   const [name, setName] = useState('')
   const [serverSlug, setServerSlug] = useState('')
-  const [serverRegion, setServerRegion] = useState('')
+  const [serverRegion, setServerRegion] = useState('US')
   const [encounterId, setEncounterId] = useState(0)
 
   const [character, setCharacter] = useState({
@@ -86,7 +87,7 @@ function App() {
                 }
               />
             </div>
-            <div className="form-field">
+            {/* <div className="form-field">
               <label htmlFor="serverRegion">Region: </label>
               <input
                 id="serverRegion"
@@ -94,6 +95,21 @@ function App() {
                 name="serverRegion"
                 onChange={(e) => setServerRegion(e.target.value)}
               />
+            </div> */}
+            <div className="form-field">
+              <label htmlFor="serverRegion">Region: </label>
+              <select
+                id="serverRegion"
+                name="serverRegion"
+                value={serverRegion}
+                onChange={(e) => setServerRegion(e.target.value)}
+              >
+                <option value="US">United States - OCE</option>
+                <option value="EU">Europe</option>
+                <option value="KR">Korea</option>
+                <option value="TW">Taiwan</option>
+                <option value="CN">China</option>
+              </select>
             </div>
             {/*  <div className="form-field">
               <label htmlFor="encounterId">EncounterId: </label>
@@ -105,7 +121,7 @@ function App() {
               />
             </div> */}
             <div className="form-field">
-              <label htmlFor="encounterId">EncounterId: </label>
+              <label htmlFor="encounterId">Encounter: </label>
               <select
                 id="encounterId"
                 name="encounterId"
