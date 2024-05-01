@@ -2,11 +2,9 @@ import express from 'express'
 import dotenv from 'dotenv'
 import { getToken, updateToken } from '../db/functions/token'
 import {
-  queryExpansionIDs,
   queryEncounterIDs,
   queryClassesAndSpecs,
   queryParsesBySpecAndDuration,
-  queryRegionAndServer,
   queryCharacterParses,
   queryCharacterDetailsTEST,
 } from './queries/queries'
@@ -191,7 +189,6 @@ router.get('/encounters', async (req, res) => {
       body: JSON.stringify({ Query }),
     })
 
-    console.log(encounters)
     const jsonEncounters = await encounters.json()
 
     const raidOnlyEncounters =
@@ -199,9 +196,13 @@ router.get('/encounters', async (req, res) => {
         (zone: { name: string | string[] }) =>
           !zone.name.includes('Mythic+') && !zone.name.includes('zone-')
       )
-    console.log(raidOnlyEncounters)
 
-    res.json(raidOnlyEncounters)
+    const currentEncounters = await raidOnlyEncounters.flatMap(
+      (encounter: { encounters: { name: string; id: number } }) =>
+        encounter.encounters
+    )
+
+    res.json(currentEncounters)
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: 'Something went wrong' })

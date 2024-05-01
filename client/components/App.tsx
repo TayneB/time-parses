@@ -40,6 +40,7 @@ function App() {
   }, [])
 
   const { data, isLoading, isError, fetchStatus } = useParses(character)
+  console.log(0)
 
   return (
     <>

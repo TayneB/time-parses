@@ -23,9 +23,8 @@ export async function getCharacterData(character: {
   return data
 }
 
-export async function getEncounterDetails(): Promise<Encounter> {
+export async function getEncounterDetails(): Promise<Encounter[]> {
   const { body } = await request.get(`${rootUrl}/encounters`).then((res) => res)
-  console.log(body)
   return body
 }
 
