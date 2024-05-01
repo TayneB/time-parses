@@ -56,15 +56,15 @@ function App() {
               />
             </div>
             <div className="form-field">
-              <label htmlFor="serverSlug">Server: </label>
-              <input
-                id="serverSlug"
-                type="text"
-                name="name"
-                onChange={(e) =>
-                  setServerSlug(sanitiseServerSlug(e.target.value))
-                }
-              />
+              <label htmlFor="encounterId">Encounter: </label>
+              <select
+                id="encounterId"
+                name="encounterId"
+                value={encounterId}
+                onChange={(e) => setEncounterId(Number(e.target.value))}
+              >
+                <EncounterSelectOptions handleCallback={handleCallback} />
+              </select>
             </div>
             <div className="form-field">
               <label htmlFor="serverRegion">Region: </label>
@@ -82,15 +82,15 @@ function App() {
               </select>
             </div>
             <div className="form-field">
-              <label htmlFor="encounterId">Encounter: </label>
-              <select
-                id="encounterId"
-                name="encounterId"
-                value={encounterId}
-                onChange={(e) => setEncounterId(Number(e.target.value))}
-              >
-                <EncounterSelectOptions handleCallback={handleCallback} />
-              </select>
+              <label htmlFor="serverSlug">Server: </label>
+              <input
+                id="serverSlug"
+                type="text"
+                name="name"
+                onChange={(e) =>
+                  setServerSlug(sanitiseServerSlug(e.target.value))
+                }
+              />
             </div>
           </div>
           <div className="form-button">

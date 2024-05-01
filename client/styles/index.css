@@ -6,6 +6,13 @@ label {
   display: block;
 }
 
+select {
+  display: block;
+  width: 10.938rem;
+
+  border: 1px solid #000000;
+}
+
 .centered {
   padding: 0;
   background-color: #ffffff;
