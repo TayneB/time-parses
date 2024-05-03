@@ -56,7 +56,7 @@ function App() {
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-            <div className="form-field selector">
+            <div className="form-field">
               <label htmlFor="encounterId">Encounter: </label>
               <select
                 id="encounterId"
@@ -67,7 +67,7 @@ function App() {
                 <EncounterSelectOptions handleCallback={handleCallback} />
               </select>
             </div>
-            <div className="form-field selector">
+            <div className="form-field">
               <label htmlFor="serverRegion">Region: </label>
               <select
                 id="serverRegion"
