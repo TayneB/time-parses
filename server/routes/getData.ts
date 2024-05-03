@@ -2,11 +2,9 @@ import express from 'express'
 import dotenv from 'dotenv'
 import { getToken, updateToken } from '../db/functions/token'
 import {
-  queryExpansionIDs,
   queryEncounterIDs,
   queryClassesAndSpecs,
   queryParsesBySpecAndDuration,
-  queryRegionAndServer,
   queryCharacterParses,
   queryCharacterDetailsTEST,
 } from './queries/queries'
@@ -74,14 +72,14 @@ router.get('/', async (req, res) => {
       queryParams.serverRegion
     )
 
-    const response = await fetch(apiUrl, {
+    /* const response = await fetch(apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ Query }),
-    })
+    }) */
 
     Query = queryCharacterParses(
       queryParams.name,
@@ -193,9 +191,18 @@ router.get('/encounters', async (req, res) => {
 
     const jsonEncounters = await encounters.json()
 
-    console.log(jsonEncounters)
+    const raidOnlyEncounters =
+      await jsonEncounters.data.worldData.expansion.zones.filter(
+        (zone: { name: string | string[] }) =>
+          !zone.name.includes('Mythic+') && !zone.name.includes('zone-')
+      )
 
-    res.json(jsonEncounters)
+    const currentEncounters = await raidOnlyEncounters.flatMap(
+      (encounter: { encounters: { name: string; id: number } }) =>
+        encounter.encounters
+    )
+
+    res.json(currentEncounters)
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: 'Something went wrong' })
