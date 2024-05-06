@@ -6,6 +6,8 @@ import EncounterSelectOptions from './EncounterSelectOptions'
 // NOTE: the encounterId MUST be from the current raid tier or it cant find results
 // old raid tiers just time out because the data is not stored anymore
 // using US as default because it's the first value to select
+// Dragonflight season 4 has made this app function weirdly, it only works for the currently active awakened raid
+// I'm not sure how it will work once all raids become awakened
 
 function App() {
   const [name, setName] = useState('')
