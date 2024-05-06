@@ -16,7 +16,7 @@ const EncounterSelectOptions = ({
     }
   }, [data, isLoading, isError, isInitialized]) // eslint-disable-line
   if (isLoading) return <option>Loading</option>
-  if (isError) return <option value="2688">Kazzara</option>
+  if (isError) return <option>Error</option>
   console.log(data)
   return (
     <>
